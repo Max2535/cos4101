@@ -1,6 +1,6 @@
 <%-- 
-    Document   : del
-    Created on : Jul 16, 2017, 10:48:22 AM
+    Document   : save
+    Created on : Jul 16, 2017, 10:41:10 AM
     Author     : Max
 --%>
 
@@ -15,9 +15,6 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <html>
-<head>
-	<title>ThaiCreate.Com JSP Tutorial</title>
-</head>
 <body>
 	
 	<%	
@@ -31,14 +28,12 @@
 		
 		s = connect.createStatement();
 		
-		String strCustomerID = request.getParameter("CusID");
-		
-		
-		String sql = "DELETE FROM customer " +
-				" WHERE CustomerID = '" + strCustomerID + "' ";
-         s.execute(sql);
-        
-         out.println("Record Delete Successfully");
+		String StandID = request.getParameter("StandID");
+                String Data = request.getParameter("Data");
+		//UPDATE `stand` SET `Data` = 'ทดสอบxcxcxvc' WHERE `stand`.`StandID` = 1;
+                String sql = "UPDATE `stand` SET `Data` = '"+Data+"' WHERE `stand`.`StandID` = "+StandID+";";
+                s.execute(sql);
+                response.sendRedirect("/BMPDev/admin/index.jsp");
 	  		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -59,3 +54,4 @@
 	%>
 </body>
 </html>
+

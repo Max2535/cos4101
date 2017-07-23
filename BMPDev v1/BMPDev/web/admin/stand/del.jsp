@@ -1,6 +1,6 @@
 <%-- 
-    Document   : save
-    Created on : Jul 16, 2017, 10:41:10 AM
+    Document   : del
+    Created on : Jul 16, 2017, 10:48:22 AM
     Author     : Max
 --%>
 
@@ -15,9 +15,6 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <html>
-<head>
-	<title>ThaiCreate.Com JSP Tutorial</title>
-</head>
 <body>
 	
 	<%	
@@ -31,24 +28,13 @@
 		
 		s = connect.createStatement();
 		
-		String strCustomerID = request.getParameter("CusID");
-		String strName = request.getParameter("txtName");
-		String strEmail = request.getParameter("txtEmail");
-		String strCountryCode = request.getParameter("txtCountryCode");
-		float intBudget = Float.valueOf(request.getParameter("txtBudget"));
-		float intUsed = Float.valueOf(request.getParameter("txtUsed"));
+		String StandID = request.getParameter("StandID");
 		
 		
-		String sql = "UPDATE customer " +
-				"SET Name = '"+ strName + "' " +
-				", Email = '"+ strEmail + "' " +
-				", CountryCode = '"+ strCountryCode + "' " +
-				", Budget = '"+ intBudget + "' " +
-				", Used = '"+ intUsed + "' " +
-				" WHERE CustomerID = '" + strCustomerID + "' ";
-         s.execute(sql);
+		String sql = "DELETE FROM stand " +" WHERE StandID = '" + StandID + "' ";
+                s.execute(sql);
         
-         out.println("Record Update Successfully");
+         response.sendRedirect("/BMPDev/admin/index.jsp");
 	  		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -69,4 +55,3 @@
 	%>
 </body>
 </html>
-

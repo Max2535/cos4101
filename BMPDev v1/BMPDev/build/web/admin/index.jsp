@@ -287,15 +287,15 @@
                                             <td align="center"><%=rec.getString("MotorCycleID")%></td>
                                             <td align="center"><%=rec.getString("Data")%></td>
                                             <td align="center"><%=rec.getString("ExpiredDate")%></td>
-                                            <td align="center"><a type="button" href="view.jsp?CusID=<%=rec.getString("StandID")%>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-info-sign"></i></a></td>
-                                            <td align="center"><a type="button" href="edit.jsp?CusID=<%=rec.getString("StandID")%>" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-edit"></i></a>                                                
-                                            <td align="center"><a type="button" onclick="del()" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-trash"></i></a>
+                                            <td align="center"><a type="button" href="/BMPDev/admin/stand/view.jsp?StandID=<%=rec.getString("StandID")%>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-info-sign"></i></a></td>
+                                            <td align="center"><a type="button" href="/BMPDev/admin/stand/edit.jsp?StandID=<%=rec.getString("StandID")%>" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-edit"></i></a>                                                
+                                            <td align="center"><a type="button" onclick="del3()" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-trash"></i></a>
                                                 <script>
-                                                function del() 
+                                                function del3() 
                                                 {
-                                                        if (confirm("คุณต้องการลบ <%=rec.getString("StandID")%> ?") == true) 
+                                                        if (confirm("จัดการคืนรถ คุณต้องการลบ <%=rec.getString("StandID")%> ?") == true) 
                                                         {
-                                                        javascript:location.href="del.jsp?CusID=<%=rec.getString("StandID")%>"
+                                                        javascript:location.href="/BMPDev/admin/stand/del.jsp?StandID=<%=rec.getString("StandID")%>"
                                                         } 
                                                 }
                                                 </script>
