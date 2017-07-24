@@ -57,6 +57,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="../dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../dist/sweetalert.css">
 
 </head>
 <body>
@@ -408,52 +410,28 @@
     </script>
 
 
-<div id="id01" class="modal" onfocus="JavaScript:return null;">
+<div id="id01" class="modal sweet-overlay" onfocus="JavaScript:return null;">
    <form class="modal-content animate" name="frmAdd" method="post" action="add.jsp"  onSubmit="JavaScript:return fncSubmit();">	
-        <center>
+        <center><h2>เพิ่มผู้ใช้งาน</h2><hr>
         <div class="form-group">
-            <input class="form-control" name="txtCustomerID" placeholder="CustomerID" style="width: 50%">
+            <input class="form-control" type="text"  name="txtCustomerID" placeholder="CustomerID" style="width: 90%">
+            <input class="form-control" type="text" name="txtName" placeholder="Name" style="width: 90%">
+            <input class="form-control" type="email" name="txtEmail" placeholder=" E-mail" style="width: 90%">
+            <input class="form-control" type="text" name="txtCountryCode" placeholder="CountryCode" style="width: 90%">
+            <input class="form-control" type="text" name="txtBudget" placeholder="Budget" style="width: 90%">
+            <input class="form-control" type="text" name="txtUsed" placeholder="Used" style="width: 90%">
+            <table border="0">
+                <tbody>
+                    <tr>
+                        <td><button type="button" class="btn btn-danger form-control " onclick="document.getElementById('id01').style.display='none'"><i class="glyphicon glyphicon-remove"></i> ออก</button></td>
+                        <td>&nbsp;</td>
+                        <td><button type="submit" name="Submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> บันทึก</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
         </center>
-        <!--
-	<table width="374" border="1">	
-  <tr>
-	<th width="140">
-    <div align="left">CustomerID </div></th>
-		<td width="272"><input type="text" name="txtCustomerID" size="5"></td>
-	</tr>
-  <tr>
-	<th width="140">
-    <div align="left">Name </div></th>
-		<td><input type="text" name="txtName" size="20"></td>
-	</tr>
-  <tr>
-	<th width="140">
-    <div align="left">Email </div></th>
-		<td><input type="text" name="txtEmail" size="20"></td>
-	</tr>
-  <tr>
-	<th width="140">
-    <div align="left">CountryCode </div></th>
-		<td><input type="text" name="txtCountryCode" size="2"></td>
-	</tr>
-  <tr>
-	<th width="140">
-    <div align="left">Budget </div></th>
-		<td><input type="text" name="txtBudget" size="5"></td>
-	</tr>
-  <tr>
-	<th width="140">
-    <div align="left">Used </div></th>
-		<td><input type="text" name="txtUsed" size="5"></td>
-	</tr>
-	</table>
-        <br>
-        <div  style="background-color:#f1f1f1">
-      <button type="submit" value="Save" >Save</button>
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>-->
 	</form> 
     
 </div>
