@@ -76,14 +76,15 @@
             
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                
+               
                 <ul class="nav navbar-nav navbar-right">
                    
                     <li>
                         <a href="#">เพิ่มเมนู</a>
                     </li>
-                    
+                     
                 </ul>
+                
                     <form name="frmSearch" method="get" action="index.jsp" class="input-group custom-search-form navbar-right" style="width: 250px;padding: 1px;">
                         <input type="text" class="form-control" name="txtKeyword" id="txtKeyword" placeholder="Search...">
                         <span class="input-group-btn">
@@ -190,7 +191,8 @@
                 <hr>
                 <div class="panel panel-default">
                     
-                    <div class="panel-heading">                        
+                    <div class="panel-heading">  
+                        <h1>ทดสอบCommit</h1>
                         <button type="button" class="btn btn-primary btn-lg btn-block" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><i class="glyphicon glyphicon-plus"></i>เพิ่มข้อมูล</button>
                         </div>
                         <!-- /.panel-heading -->
