@@ -70,7 +70,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.jsp">หน้าข้อมูลผู้ใช้</a>
                 
             </div>
             
