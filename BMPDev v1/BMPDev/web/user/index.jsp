@@ -191,8 +191,7 @@
                 <hr>
                 <div class="panel panel-default">
                     
-                    <div class="panel-heading">  
-                        <h1>ทดสอบCommit</h1>
+                    <div class="panel-heading">
                         <button type="button" class="btn btn-primary btn-lg btn-block" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><i class="glyphicon glyphicon-plus"></i>เพิ่มข้อมูล</button>
                         </div>
                         <!-- /.panel-heading -->
