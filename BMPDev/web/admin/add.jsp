@@ -29,7 +29,7 @@
 
 <html>
 <head>
-	<title>ThaiCreate.Com JSP Tutorial</title>
+	<title>add</title>
 </head>
 <body>
 	
@@ -62,12 +62,9 @@
 				"VALUES ('" + strCustomerID + "','" + strName + "' " +
 				",'" + strEmail + "','" + strCountryCode + "'" +
 				",'" + intBudget + "','" + intUsed + "') ";
-         s.execute(sql);
-        
-         out.println("Record Inserted Successfully");
-        
-	  		
-		} catch (Exception e) {
+                s.execute(sql);
+                response.sendRedirect("/BMPDev/admin/index.jsp");
+                } catch (Exception e) {
 			// TODO Auto-generated catch block
 			out.println(e.getMessage());
 			e.printStackTrace();

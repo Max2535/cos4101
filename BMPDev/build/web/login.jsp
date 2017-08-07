@@ -39,8 +39,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-        <script src="dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
     <style>
         body{
             background-image:url("../BMPDev/image/bg.png");
@@ -97,21 +95,31 @@
 			" Password = '" + password + "' ";
 			
 			ResultSet rec = s.executeQuery(sql);
+                        
 			if(!rec.next())
 			{
-				out.print("<script>sweetAlert('Oops...','กรอกชื่อผู้ใช้หรือรหัสผ่านผิด!', 'error')</script>");
+				out.print("<script>alert('กรอกชื่อผู้ใช้หรือรหัสผ่านผิด!')</script>");
 			} else {
 				rec.first();
-				session.setAttribute("sUserID",rec.getString("UserID"));
+                                session.setAttribute("sUserID",rec.getString("UserID"));
                                 session.setAttribute("Type",rec.getString("Type"));
                                 //ตรวจสอบประเภทผู้ใช้ตรงนี้
                                 if(rec.getString("Type").equals("admin"))
                                         {
                                             response.sendRedirect("/BMPDev/admin/index.jsp");
                                         }
-                                else
+                                else if(rec.getInt("online")==0)
                                 {
+                                    String sql1 = "UPDATE member SET online = '1' WHERE UserID = "+rec.getString("UserID")+";";
+                                    s.execute(sql1);
                                     response.sendRedirect("/BMPDev/user/index.jsp");
+                                    
+                                }else
+                                {
+                                    {
+                                        out.print("<script>alert('มีคนเข้าระบบด้วยชื่อนี้แล้ว!')</script>");
+                                        
+                                    }
                                 }
 			}
 			
@@ -171,7 +179,7 @@
                 var x = document.forms["singupform"]["txtUsername"].value;
                 var y = document.forms["singupform"]["txtPassword"].value;
                 if (x==""||y=="") {
-				sweetAlert("Oops...", "กรุณากรอกข้อมูล", "error");
+				alert( "กรุณากรอกข้อมูล");
                 return false;
                 }
                 }

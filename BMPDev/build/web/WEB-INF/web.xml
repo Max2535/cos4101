@@ -4,9 +4,17 @@
         <servlet-name>config</servlet-name>
         <servlet-class>data.config</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>useronline</servlet-name>
+        <servlet-class>data.useronline</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>config</servlet-name>
         <url-pattern>/config</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>useronline</servlet-name>
+        <url-pattern>/useronline</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

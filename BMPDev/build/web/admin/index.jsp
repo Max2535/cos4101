@@ -8,15 +8,15 @@
         Object Type = session.getAttribute("Type");
 	if(strUserID == null&&Type==null) // Check Login
 	{
-            response.sendRedirect("/BMPDev/index.jsp"); 
             out.print("<script>alert('คุณยังไม่ได้เข้าสู้ระบบ กรุณาเข้าสู่ระบบด้วย');</script>");
+            response.sendRedirect("/BMPDev/index.jsp");            
                              
 	}
         else if(!Type.equals("admin"))
                 {
                   response.sendRedirect("/BMPDev/index.jsp");
                 }
-        %>
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="data.configmysql"%>
 <%@ page import="java.sql.ResultSet" %>
@@ -306,7 +306,7 @@
                                                 <script>
                                                 function del3() 
                                                 {
-                                                        if (confirm("จัดการคืนรถ คุณต้องการลบ <%=rec.getString("StandID")%> ?") == true)
+                                                        if (confirm("จัดการคืนรถ คุณต้องการลบ <%=rec.getString("StandID")%> ?") === true)
                                                         {
                                                         javascript:location.href="/BMPDev/admin/stand/del.jsp?StandID=<%=rec.getString("StandID")%>"
                                                         } 
@@ -360,7 +360,7 @@
                                                 <script>
                                                 function del() 
                                                 {
-                                                        if (confirm("คุณต้องการลบ <%=rec.getString("UserID")%> ?") == true) 
+                                                        if (confirm("คุณต้องการลบ <%=rec.getString("UserID")%> ?")=== true) 
                                                         {
                                                         javascript:location.href="del.jsp?CusID=<%=rec.getString("UserID")%>"
                                                         } 
