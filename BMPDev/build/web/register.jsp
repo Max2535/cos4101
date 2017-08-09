@@ -4,6 +4,7 @@
     Author     : Max
 --%>
 
+<%@page import="data.delcountpage"%>
 <%@page import="data.configmysql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,19 +15,29 @@
 <%@ page import="java.sql.DriverManager" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
-	if(request.getParameter("Action") != null)	
-	{
+    Object Page = session.getAttribute("Page");
+    if(Page == null)
+    {
+    
 		Connection connect1 = null;
 		Statement s1 = null;
 		
 		try {
 			Class.forName(configmysql.mysqljdbc);
                         connect1 =  DriverManager.getConnection(configmysql.mysqlserver);
-			
-			Object strUserID = session.getAttribute("sUserID");
-			s1 = connect1.createStatement();
-                        String sql = "UPDATE member SET online = '0' WHERE UserID = "+strUserID+";";
-                        s1.execute(sql);			
+                        s1 = connect1.createStatement();
+			String sql1 = "SELECT * FROM  pageconut";
+			ResultSet rec1 = s1.executeQuery(sql1);
+                        rec1.first();
+                        int tmp=rec1.getInt("count");
+                        if(tmp>5){
+                             response.sendRedirect("/BMPDev/full.jsp");
+                        }
+                        tmp++;
+                        //UPDATE `pageconut` SET `conut` = '5' WHERE `pageconut`.`id` = 1;
+                        String sql = "UPDATE `pageconut` SET `count` = '"+tmp+"' WHERE `id` = 1";
+                        s1.execute(sql);
+                        session.setAttribute("Page","Y");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				out.println(e.getMessage());
@@ -43,17 +54,16 @@
 				out.println(e.getMessage());
 				e.printStackTrace();
 			}
-		
-	}	
+    }
 	%>  
 <html>
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <script type="text/javascript" src="js/jquery.js"></script>
     <title>Modern Business - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
@@ -71,6 +81,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+       <!-- This is what you need -->
+        <script src="http://numnim.96.lt/dist/sweetalert-dev.js"></script>
+        <link rel="stylesheet" href="http://numnim.96.lt/dist/sweetalert.css">
     <style>
         footer{
             margin-left: 15%;
@@ -107,7 +120,66 @@
         {
             margin-top:110px;
         }
+        #time {
+	border: 3px solid #73AD21;
+        position: center;
+        padding: 5px;
+        top: 10px;
+        margin-bottom: 20px;
+        width: 300px;
+        text-align: center;
+        color: #000000;
+        font-size: 15px;
+        font-family: "Calibri", "Trebuchet MS", sans-serif;
+        }
     </style>
+    <script type='text/javascript'>//<![CDATA[
+jQuery(function ($) {
+    var fiveMinutes = 60 * 5,
+        display = $('#time');
+    startTimer(fiveMinutes, display);
+});
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text("เวลาคงเหลือ "+minutes + ":" + seconds);
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+		if(timer==0)
+		{
+		swal({
+  title: "เวลาหมด",
+  text: "ต้องการสมัครต่อหรือไม่",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "สมัครต่อ",
+  cancelButtonText: "กลับหน้าเว็บไซต์",
+  closeOnConfirm: false,
+  closeOnCancel: false
+},
+function(isConfirm){
+  if (isConfirm) {
+    window.location.href = 'http://localhost:8888/BMPDev/register.jsp';
+  } else {
+    window.location.href = 'http://localhost:8888/BMPDev/delcount.jsp';
+  }
+});
+		}
+    }, 1000);
+}
+//]]> 
+
+</script>
+
 </head>
 <body>
 	<%
@@ -153,7 +225,10 @@
 	}
 		
 %>
-<center>	
+<center>
+    <span id="time"></span>
+    <br>
+    <br>
     <form role="form" class="form-signin" name="singinform" onsubmit="return validateForm()">
     <table border="0" style="width: 100%">
     <tbody>
@@ -161,7 +236,7 @@
         <td>
           <div class="form-group input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input type="text" name="username" class="form-control" placeholder="Username">
+              <input type="text" name="username" class="form-control" placeholder="Username" autofocus>
         </div>
         </td>
       </tr>
@@ -239,4 +314,3 @@
         </footer>
 </body>
 </html>
-

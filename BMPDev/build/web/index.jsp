@@ -4,7 +4,16 @@
     Author     : Max
 --%>
 
+<%@page import="data.delcountpage"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+Object Page = session.getAttribute("Page");
+    if(Page!=null)
+    {
+        session.setAttribute("Page",null);
+        delcountpage.del();
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 
