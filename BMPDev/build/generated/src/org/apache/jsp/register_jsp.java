@@ -218,12 +218,7 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("  if (isConfirm) {\n");
       out.write("    window.location.href = 'http://localhost:8888/BMPDev/register.jsp';\n");
       out.write("  } else {\n");
-      out.write("    //window.location.href = 'http://localhost:8888/BMPDev/delcount.jsp';\n");
-      out.write("    ");
-
-    out.print("del");
-    //delcountpage.del();
-      out.write("\n");
+      out.write("    window.location.href = 'http://localhost:8888/BMPDev/delcount.jsp';\n");
       out.write("  }\n");
       out.write("});\n");
       out.write("\t\t}\n");

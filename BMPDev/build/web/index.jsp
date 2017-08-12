@@ -4,6 +4,7 @@
     Author     : Max
 --%>
 
+<%@page import="data.configmysql"%>
 <%@page import="data.delcountpage"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -72,60 +73,6 @@ Object Page = session.getAttribute("Page");
                     <li>
                         <a href="contact.html">Contact</a>
                     </li>
-                    <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="portfolio-1-col.html">1 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-2-col.html">2 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-3-col.html">3 Column Portfolio</a>
-                            </li>
-                            <li class="active">
-                                <a href="portfolio-4-col.html">4 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-item.html">Single Portfolio Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="blog-home-1.html">Blog Home 1</a>
-                            </li>
-                            <li>
-                                <a href="blog-home-2.html">Blog Home 2</a>
-                            </li>
-                            <li>
-                                <a href="blog-post.html">Blog Post</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="full-width.html">Full Width Page</a>
-                            </li>
-                            <li>
-                                <a href="sidebar.html">Sidebar Page</a>
-                            </li>
-                            <li>
-                                <a href="faq.html">FAQ</a>
-                            </li>
-                            <li>
-                                <a href="404.html">404</a>
-                            </li>
-                            <li>
-                                <a href="pricing.html">Pricing Table</a>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -139,91 +86,40 @@ Object Page = session.getAttribute("Page");
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Four Column Portfolio
-                    <small>Subheading</small>
+                <h1 class="page-header">ร้าน BMP
+                    <small>บริการจองรถมอเตอร์ไซค์ออนไลน์</small>
                 </h1>
-                <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a>
-                    </li>
-                    <li class="active">Four Column Portfolio</li>
-                </ol>
             </div>
         </div>
         <!-- /.row -->
-
-        <!-- Projects Row -->
+<!-- Portfolio Section -->
         <div class="row">
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-        </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">                     
+                    <a href="info.jsp?id=1"><img src="image/2017-08-12_8-08-03.png" width="1000" height="492" alt="4406800_sd" data-holder-rendered="true" style="height: 200px; width: 70%; display: block;"/></a>
+                    <div class="caption" style=" text-align: center"> <h3>ราคา xxxxxx</h3><p>
+                                                <a href="#" class="btn btn-primary" role="button">จอง</a>
+                                                <a href="#" class="btn btn-default" role="button">รายละเอียด</a></p> 
+                                        </div> 
+                </div> </div> 
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">                     
+                    <a href="info.jsp?id=1"><img src="image/2017-08-12_8-08-03.png" width="1000" height="492" alt="4406800_sd" data-holder-rendered="true" style="height: 200px; width: 70%; display: block;"/></a>
+                    <div class="caption" style=" text-align: center"> <h3>ราคา xxxxxx</h3><p>
+                                                <a href="#" class="btn btn-primary" role="button">จอง</a>
+                                                <a href="#" class="btn btn-default" role="button">รายละเอียด</a></p> 
+                                        </div> 
+                </div> </div> 
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">                     
+                    <a href="info.jsp?id=1"><img src="image/2017-08-12_8-08-03.png" width="1000" height="492" alt="4406800_sd" data-holder-rendered="true" style="height: 200px; width: 70%; display: block;"/></a>
+                    <div class="caption" style=" text-align: center"> <h3>ราคา xxxxxx</h3><p>
+                                                <a href="#" class="btn btn-primary" role="button">จอง</a>
+                                                <a href="#" class="btn btn-default" role="button">รายละเอียด</a></p> 
+                                        </div> 
+                </div> </div> 
+                                </div>
         <!-- /.row -->
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
-                </a>
-            </div>
-        </div>
         <!-- /.row -->
 
         <hr>
@@ -264,7 +160,7 @@ Object Page = session.getAttribute("Page");
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; <%out.print(configmysql.website);%></p>
                 </div>
             </div>
         </footer>

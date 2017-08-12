@@ -1,5 +1,5 @@
 <%-- 
-    Document   : login
+    Document   : register
     Created on : Jul 16, 2017, 10:50:10 AM
     Author     : Max
 --%>
