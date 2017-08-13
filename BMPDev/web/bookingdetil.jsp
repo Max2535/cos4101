@@ -1,17 +1,8 @@
 <%-- 
-    Document   : index
-    Created on : Jul 25, 2017, 3:59:22 PM
+    Document   : bookingdetil
+    Created on : Aug 12, 2017, 4:59:09 PM
     Author     : Max
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-Object Page = session.getAttribute("Page");
-    if(Page!=null)
-    {
-        session.setAttribute("Page",null);
-        response.sendRedirect("/BMPDev/delcount.jsp");
-    }
-%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="data.configmysql"%>
@@ -28,10 +19,13 @@ Object Page = session.getAttribute("Page");
 		
 		s = connect.createStatement();
 		
-		String sql = "SELECT * FROM motorcycle;";
+		String sql = "SELECT * FROM motorcycle where motorcycle.MotorCycleID="+id+";";
 		
 		ResultSet rec = s.executeQuery(sql);
-		%>  
+                rec.first();
+                rec.getString("image1");
+		%>                   
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,9 +36,8 @@ Object Page = session.getAttribute("Page");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title><%
-        out.print(configmysql.title);
-        %></title>
+
+    <title>Modern Business - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -77,21 +70,19 @@ Object Page = session.getAttribute("Page");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp"><%
-        out.print(configmysql.title);
-        %></a>
+                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="about.jsp">About</a>
+                        <a href="about.html">About</a>
                     </li>
                     <li>
-                        <a href="services.jsp">Services</a>
+                        <a href="services.html">Services</a>
                     </li>
                     <li>
-                        <a href="contact.jsp">Contact</a>
+                        <a href="contact.html">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -106,27 +97,58 @@ Object Page = session.getAttribute("Page");
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">ร้าน BMP
-                    <small>บริการจองรถมอเตอร์ไซค์ออนไลน์</small>
-                </h1>
+                <br>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li class="active">จองรถมอเตอร์ไซค์:<%=rec.getString("BrandMotorCycle")%></li>
+                </ol>
             </div>
         </div>
         <!-- /.row -->
-<!-- Portfolio Section -->
-        <div class="row">
-            <%while((rec!=null) && (rec.next())) { %>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">                     
-                    <a href="info.jsp?id=<%=rec.getString("MotorCycleID")%>"><img src="<%=rec.getString("thumbnail")%>" width="1000" height="492" alt="<%=rec.getString("BrandMotorCycle")%>" data-holder-rendered="true" style="height: 200px; width: 70%; display: block;"/></a>
-                    <div class="caption" style=" text-align: center"> <h3>ราคา:<%=rec.getInt("Price")%>.-บาท</h3><p>
-                                                <a href="info.jsp?id=<%=rec.getString("MotorCycleID")%>" class="btn btn-primary" role="button">จอง</a>
-                                                <a href="info.jsp?id=<%=rec.getString("MotorCycleID")%>" class="btn btn-default" role="button">รายละเอียด</a></p> 
-                                        </div> 
-                </div> </div> 
-            <%}%>
-                                </div>
-        <!-- /.row -->
 
+        <!-- Portfolio Item Row -->
+        <div class="row">
+              <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3>รายละเอียดการจอง</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h4>
+                                <center>
+                                <table border="0" style="width: 50%">
+                                    <tbody>
+                                        <tr>
+                                            <td>ยี่ห้อ,ยี่ห้อ</td>
+                                            <td><%=rec.getString("BrandMotorCycle")%></td>
+                                        </tr>
+                                        <tr>
+                                            <td>ราคา</td>
+                                            <td><%=rec.getInt("Price")%>.- บาท</td>
+                                        </tr>
+                                        <tr>
+                                            <td>วันที่รับรถ</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>วันที่ส่งคืนรถ</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                        </center>
+                            </h4>
+                        </div>
+                        <div class="panel-footer">
+                            ชื่อสมาชิก
+                        </div>
+                    </div>
+
+            
+            
+            
+        </div>
+        <!-- /.row -->
         <hr>
 
         <!-- Footer -->
@@ -157,7 +179,7 @@ Object Page = session.getAttribute("Page");
                         out.print("<script>alert('ไม่พบข้อมูล')</script>");
 			out.println(e.getMessage());
 			e.printStackTrace();
-                        response.sendRedirect("/BMPDev/admin/index.jsp");
+                        //response.sendRedirect("/BMPDev/admin/index.jsp");
 		}
 	
 		try {

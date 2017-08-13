@@ -18,6 +18,7 @@ public class configmysql {
     public static String username="root";
     public static String password="08081992xx";
     public static String database="cos4101";
+    public static String title="บริการจองมอเตอร์ไซค์ออนไลน์";
     public static String mysqlserver="jdbc:mysql://localhost/"+database+"?useUnicode=true&characterEncoding=utf8&user="+username+"&password="+password;
     
 }

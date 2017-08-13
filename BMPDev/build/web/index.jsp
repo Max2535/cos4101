@@ -3,18 +3,35 @@
     Created on : Jul 25, 2017, 3:59:22 PM
     Author     : Max
 --%>
-
-<%@page import="data.configmysql"%>
-<%@page import="data.delcountpage"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 Object Page = session.getAttribute("Page");
     if(Page!=null)
     {
         session.setAttribute("Page",null);
-        delcountpage.del();
+        response.sendRedirect("/BMPDev/delcount.jsp");
     }
 %>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="data.configmysql"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%
+	Connection connect = null;
+	Statement s = null;
+	String id = request.getParameter("id");
+	try {
+		Class.forName(configmysql.mysqljdbc);
+		connect =  DriverManager.getConnection(configmysql.mysqlserver);
+		
+		s = connect.createStatement();
+		
+		String sql = "SELECT * FROM motorcycle;";
+		
+		ResultSet rec = s.executeQuery(sql);
+		%>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,8 +42,9 @@ Object Page = session.getAttribute("Page");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title><%
+        out.print(configmysql.title);
+        %></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -59,19 +77,21 @@ Object Page = session.getAttribute("Page");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.jsp"><%
+        out.print(configmysql.title);
+        %></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="about.html">About</a>
+                        <a href="about.jsp">About</a>
                     </li>
                     <li>
-                        <a href="services.html">Services</a>
+                        <a href="services.jsp">Services</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contact</a>
+                        <a href="contact.jsp">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -94,64 +114,17 @@ Object Page = session.getAttribute("Page");
         <!-- /.row -->
 <!-- Portfolio Section -->
         <div class="row">
+            <%while((rec!=null) && (rec.next())) { %>
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">                     
-                    <a href="info.jsp?id=1"><img src="image/2017-08-12_8-08-03.png" width="1000" height="492" alt="4406800_sd" data-holder-rendered="true" style="height: 200px; width: 70%; display: block;"/></a>
-                    <div class="caption" style=" text-align: center"> <h3>ราคา xxxxxx</h3><p>
-                                                <a href="#" class="btn btn-primary" role="button">จอง</a>
-                                                <a href="#" class="btn btn-default" role="button">รายละเอียด</a></p> 
+                    <a href="info.jsp?id=<%=rec.getString("MotorCycleID")%>"><img src="<%=rec.getString("thumbnail")%>" width="1000" height="492" alt="<%=rec.getString("BrandMotorCycle")%>" data-holder-rendered="true" style="height: 200px; width: 70%; display: block;"/></a>
+                    <div class="caption" style=" text-align: center"> <h3>ราคา:<%=rec.getInt("Price")%>.-บาท</h3><p>
+                                                <a href="info.jsp?id=<%=rec.getString("MotorCycleID")%>" class="btn btn-primary" role="button">จอง</a>
+                                                <a href="info.jsp?id=<%=rec.getString("MotorCycleID")%>" class="btn btn-default" role="button">รายละเอียด</a></p> 
                                         </div> 
                 </div> </div> 
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">                     
-                    <a href="info.jsp?id=1"><img src="image/2017-08-12_8-08-03.png" width="1000" height="492" alt="4406800_sd" data-holder-rendered="true" style="height: 200px; width: 70%; display: block;"/></a>
-                    <div class="caption" style=" text-align: center"> <h3>ราคา xxxxxx</h3><p>
-                                                <a href="#" class="btn btn-primary" role="button">จอง</a>
-                                                <a href="#" class="btn btn-default" role="button">รายละเอียด</a></p> 
-                                        </div> 
-                </div> </div> 
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">                     
-                    <a href="info.jsp?id=1"><img src="image/2017-08-12_8-08-03.png" width="1000" height="492" alt="4406800_sd" data-holder-rendered="true" style="height: 200px; width: 70%; display: block;"/></a>
-                    <div class="caption" style=" text-align: center"> <h3>ราคา xxxxxx</h3><p>
-                                                <a href="#" class="btn btn-primary" role="button">จอง</a>
-                                                <a href="#" class="btn btn-default" role="button">รายละเอียด</a></p> 
-                                        </div> 
-                </div> </div> 
+            <%}%>
                                 </div>
-        <!-- /.row -->
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Pagination -->
-        <div class="row text-center">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <!-- /.row -->
 
         <hr>
@@ -177,3 +150,24 @@ Object Page = session.getAttribute("Page");
 </body>
 
 </html>
+
+       <%	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+                        out.print("<script>alert('ไม่พบข้อมูล')</script>");
+			out.println(e.getMessage());
+			e.printStackTrace();
+                        response.sendRedirect("/BMPDev/admin/index.jsp");
+		}
+	
+		try {
+			if(s!=null){
+				s.close();
+				connect.close();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	%>
