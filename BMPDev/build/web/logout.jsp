@@ -17,13 +17,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>logout</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
         	<%
-	if(request.getParameter("Action") != null)	
-	{
 		Connection connect = null;
 		Statement s = null;
 		
@@ -34,6 +31,8 @@
 			Object strUserID = session.getAttribute("sUserID");
 			s = connect.createStatement();
                         String sql = "UPDATE member SET online = '0' WHERE UserID = "+strUserID+";";
+                        //out.print(sql);
+                        response.sendRedirect("/BMPDev/index.jsp");
                         s.execute(sql);			
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -51,8 +50,6 @@
 				out.println(e.getMessage());
 				e.printStackTrace();
 			}
-		
-	}
 	session.removeAttribute("sUserID");	
 	session.removeAttribute("Type");	
 	%>  

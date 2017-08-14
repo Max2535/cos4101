@@ -158,11 +158,11 @@
 		String sql;
 		if(keyword=="")
                 {
-                    sql = "SELECT * FROM  hire";
+                    sql = "SELECT member.Name,hire.*,motorcycle.BrandMotorCycle from  hire left outer join member on hire.UserID=member.UserID left outer join motorcycle on motorcycle.MotorCycleID=hire.MotorCycleID"
+                        +" ORDER BY member.UserID ASC";
                 }else
                 {
-                    sql = "SELECT * FROM  hire WHERE HireID like '%" +  keyword + "%' " +
-		" ORDER BY CustomerID ASC";
+                    sql = "";
                 }
 		System.out.println(sql);
 		
@@ -178,11 +178,11 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th> <div align="center">HireID </div></th>
-                                            <th> <div align="center">UserID </div></th>
-                                            <th> <div align="center">MotorCycleID </div></th>                                            
-                                            <th> <div align="center">Data </div></th>
-                                            <th> <div align="center">ExpiredDate </div></th>
+                                            <th> <div align="center">รหัสการเช่า </div></th>
+                                            <th> <div align="center">ชื่อลูกค้า </div></th>
+                                            <th> <div align="center">รุ่นมอเตอร์ไซค์ </div></th>                                            
+                                            <th> <div align="center">จำนวนวันที่เช่า </div></th>
+                                            <th> <div align="center">กำหนดส่งรถ </div></th>
                                             <th> <div align="center">View </div></th>
                                             <th> <div align="center">Edit </div></th>
                                             <th> <div align="center">Delete </div></th>
@@ -192,8 +192,8 @@
                                     <%while((rec!=null) && (rec.next())) { %>
                                         <tr>
                                             <td align="center"><div align="center"><%=rec.getString("HireID")%></div></td>
-                                            <td align="center"><%=rec.getString("UserID")%></td>
-                                            <td align="center"><%=rec.getString("MotorCycleID")%></td>
+                                            <td align="center"><%=rec.getString("Name")%></td>
+                                            <td align="center"><%=rec.getString("BrandMotorCycle")%></td>
                                             <td align="center"><%=rec.getString("Data")%></td>
                                             <td align="center"><%=rec.getString("ExpiredDate")%></td>
                                             <td align="center"><a type="button" href="view.jsp?CusID=<%=rec.getString("HireID")%>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-info-sign"></i></a></td>
@@ -219,7 +219,7 @@
                     <%
 		if(keyword=="")
                 {
-                    sql = "SELECT * FROM  booking";
+                    sql = "SELECT member.Name,booking.*,motorcycle.BrandMotorCycle from  booking left outer join member on booking.UserID=member.UserID left outer join motorcycle on motorcycle.MotorCycleID=booking.MotorCycleID";
                 }
 		System.out.println(sql);
                 rec = s.executeQuery(sql);
@@ -230,11 +230,11 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th> <div align="center">BookingID </div></th>
-                                            <th> <div align="center">UserID </div></th>
-                                            <th> <div align="center">MotorCycleID </div></th>
-                                            <th> <div align="center">Data </div></th>
-                                            <th> <div align="center">ExpiredDate </div></th>
+                                            <th> <div align="center">รหัสการจอง </div></th>
+                                            <th> <div align="center">ชื่อลูกค้า </div></th>
+                                            <th> <div align="center">รุ่นมอเตอร์ไซค์ </div></th>
+                                            <th> <div align="center">วันที่ใช้งาน </div></th>
+                                            <th> <div align="center">เวลาในการจอง </div></th>
                                             <th> <div align="center">View </div></th>
                                             <th> <div align="center">Edit </div></th>
                                             <th> <div align="center">Delete </div></th>
@@ -244,8 +244,8 @@
                                     <%while((rec!=null) && (rec.next())) { %>
                                         <tr>
                                             <td align="center"><div align="center"><%=rec.getString("BookingID")%></div></td>
-                                            <td align="center"><%=rec.getString("UserID")%></td>
-                                            <td align="center"><%=rec.getString("MotorCycleID")%></td>
+                                            <td align="center"><%=rec.getString("Name")%></td>
+                                            <td align="center"><%=rec.getString("BrandMotorCycle")%></td>
                                             <td align="center"><%=rec.getString("Data")%></td>
                                             <td align="center"><%=rec.getString("ExpiredDate")%></td>
                                             <td align="center"><a type="button" href="/BMPDev/admin/booking/view.jsp?BookingID=<%=rec.getString("BookingID")%>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-info-sign"></i></a></td>
@@ -272,7 +272,7 @@
                 <%
 		if(keyword=="")
                 {
-                    sql = "SELECT * FROM  stand";
+                    sql = "SELECT member.Name,stand.*,motorcycle.BrandMotorCycle from  stand left outer join member on stand.UserID=member.UserID left outer join motorcycle on motorcycle.MotorCycleID=stand.MotorCycleID";
                 }
 		System.out.println(sql);
                 rec = s.executeQuery(sql);
@@ -282,11 +282,11 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th> <div align="center">StandID </div></th>
-                                            <th> <div align="center">UserID </div></th>
-                                            <th> <div align="center">MotorCycleID </div></th>
-                                            <th> <div align="center">Data </div></th>
-                                            <th> <div align="center">ExpiredDate </div></th>
+                                            <th> <div align="center">รหัสการคืน </div></th>
+                                            <th> <div align="center">ชื่อลูกค้า </div></th>
+                                            <th> <div align="center">รุ่นมอเตอร์ไซค์ </div></th>
+                                            <th> <div align="center">กำหนดวันคืนรถ </div></th>
+                                            <th> <div align="center">วันที่คืนรถ </div></th>
                                             <th> <div align="center">View </div></th>
                                             <th> <div align="center">Edit </div></th>
                                             <th> <div align="center">Delete </div></th>
@@ -296,9 +296,9 @@
                                     <%while((rec!=null) && (rec.next())) { %>
                                         <tr>
                                             <td align="center"><div align="center"><%=rec.getString("StandID")%></div></td>
-                                            <td align="center"><%=rec.getString("UserID")%></td>
-                                            <td align="center"><%=rec.getString("MotorCycleID")%></td>
-                                            <td align="center"><%=rec.getString("Data")%></td>
+                                            <td align="center"><%=rec.getString("Name")%></td>
+                                            <td align="center"><%=rec.getString("BrandMotorCycle")%></td>
+                                            <td align="center"><%=rec.getString("ExpiredDate")%></td>
                                             <td align="center"><%=rec.getString("ExpiredDate")%></td>
                                             <td align="center"><a type="button" href="/BMPDev/admin/stand/view.jsp?StandID=<%=rec.getString("StandID")%>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-info-sign"></i></a></td>
                                             <td align="center"><a type="button" href="/BMPDev/admin/stand/edit.jsp?StandID=<%=rec.getString("StandID")%>" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-edit"></i></a>                                                
@@ -338,9 +338,9 @@
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th width="91"> <div align="center">UserID </div></th>
-                                            <th width="98"> <div align="center">Username </div></th>
-                                            <th width="198"> <div align="center">Password </div></th>
+                                            <th width="91"> <div align="center">รหัสลูกค้า </div></th>
+                                            <th width="98"> <div align="center">ชื่อผู้ใช </div></th>
+                                            <th width="198"> <div align="center">สถานะ </div></th>
                                             <th width="59"> <div align="center">Email </div></th>
                                             <th width="71"> <div align="center">View </div></th>
                                             <th width="71"> <div align="center">Edit </div></th>
@@ -352,17 +352,23 @@
                                         <tr>
                                             <td align="center"><div align="center"><%=rec.getString("UserID")%></div></td>
                                             <td align="center"><%=rec.getString("Username")%></td>
-                                            <td align="center"><%=rec.getString("Password")%></td>
+                                            <td style="width: 5%"><% int temp=rec.getInt("online");
+                                                if(temp==1)
+                                                {%>
+                                                <button type="button" class="btn btn-success">online</button>
+                                                <%}else{%>
+                                                <button type="button" class="btn btn-danger">offline</button>
+                                                <%}%></td>
                                             <td><div align="center"><%=rec.getString("Email")%></div></td>
-                                            <td align="center"><a type="button" href="view.jsp?CusID=<%=rec.getString("UserID")%>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-info-sign"></i></a></td>
-                                            <td align="center"><a type="button" href="edit.jsp?CusID=<%=rec.getString("UserID")%>" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-edit"></i></a>                                                
+                                            <td align="center"><a type="button" href="view.jsp?UserID=<%=rec.getString("UserID")%>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-info-sign"></i></a></td>
+                                            <td align="center"><a type="button" href="edit.jsp?UserID=<%=rec.getString("UserID")%>" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-edit"></i></a>                                                
                                             <td align="center"><a type="button" onclick="del()" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-trash"></i></a>
                                                 <script>
                                                 function del() 
                                                 {
                                                         if (confirm("คุณต้องการลบ <%=rec.getString("UserID")%> ?")=== true) 
                                                         {
-                                                        javascript:location.href="del.jsp?CusID=<%=rec.getString("UserID")%>"
+                                                        javascript:location.href="del.jsp?UserID=<%=rec.getString("UserID")%>"
                                                         } 
                                                 }
                                                 </script>
@@ -424,7 +430,7 @@
    <form class="modal-content animate" name="frmAdd" method="post" action="add.jsp"  onSubmit="JavaScript:return fncSubmit();">	
         <center>
         <div class="form-group">
-            <input class="form-control" type="text"  name="txtCustomerID" placeholder="CustomerID" id="t1" style="width: 90%">
+            <input class="form-control" type="text"  name="txtUserID" placeholder="UserID" id="t1" style="width: 90%">
             <input class="form-control" type="text" name="txtName" placeholder="Name" style="width: 90%">
             <input class="form-control" type="email" name="txtEmail" placeholder=" E-mail" style="width: 90%">
             <input class="form-control" type="text" name="txtCountryCode" placeholder="CountryCode" style="width: 90%">

@@ -85,13 +85,13 @@ Object Page = session.getAttribute("Page");
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="about.jsp">About</a>
+                        <a href="login.jsp">login</a>
                     </li>
                     <li>
-                        <a href="services.jsp">Services</a>
+                        <a href="register.jsp">register</a>
                     </li>
                     <li>
-                        <a href="contact.jsp">Contact</a>
+                        <a href="logout.jsp">logout</a>
                     </li>
                 </ul>
             </div>

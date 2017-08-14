@@ -58,11 +58,20 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
  request.setCharacterEncoding("UTF-8"); 
-      out.write("\n");
+      out.write('\n');
+      out.write(' ');
+
+        Object strUserID = session.getAttribute("sUserID");
+        Object Type = session.getAttribute("Type");
+	if(strUserID != null&&Type!=null) // Check Login
+        {
+                  response.sendRedirect("/BMPDev/index.jsp");
+       }
+
       out.write("\n");
       out.write("<html>\n");
       out.write("<head>\n");
-      out.write("\t<meta charset=\"utf-8\">\n");
+      out.write("    <meta charset=\"utf-8\">\n");
       out.write("    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n");
       out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n");
       out.write("    <meta name=\"description\" content=\"\">\n");
@@ -155,7 +164,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
                                         {
                                             response.sendRedirect("/BMPDev/admin/index.jsp");
                                         }
-                                else if(rec.getInt("online")==0)
+                                if(rec.getInt("online")==0)
                                 {
                                     String sql1 = "UPDATE member SET online = '1' WHERE UserID = "+rec.getString("UserID")+";";
                                     s.execute(sql1);
@@ -234,12 +243,11 @@ if(request.getParameter("txtUsername")!=null){out.print(request.getParameter("tx
       out.write("                }\n");
       out.write("                }\n");
       out.write("</script>\n");
-      out.write("<hr>\n");
       out.write("        <!-- Footer -->\n");
       out.write("        <footer>\n");
       out.write("            <div class=\"row\">\n");
       out.write("                <div class=\"col-lg-12\">\n");
-      out.write("                    <p>Copyright &copy; ");
+      out.write("                    <p style=\"margin-left: 200px\">Copyright &copy; ");
 out.print(configmysql.website);
       out.write("</p>\n");
       out.write("                </div>\n");

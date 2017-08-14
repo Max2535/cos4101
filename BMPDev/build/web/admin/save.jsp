@@ -61,7 +61,7 @@
 				" WHERE CustomerID = '" + strCustomerID + "' ";
          s.execute(sql);
         
-         out.println("Record Update Successfully");
+        response.sendRedirect("/BMPDev/admin/index.jsp");
 	  		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

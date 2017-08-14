@@ -13,10 +13,17 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <% request.setCharacterEncoding("UTF-8"); %>
-
+ <%
+        Object strUserID = session.getAttribute("sUserID");
+        Object Type = session.getAttribute("Type");
+	if(strUserID != null&&Type!=null) // Check Login
+        {
+                  response.sendRedirect("/BMPDev/index.jsp");
+       }
+%>
 <html>
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -108,7 +115,7 @@
                                         {
                                             response.sendRedirect("/BMPDev/admin/index.jsp");
                                         }
-                                else if(rec.getInt("online")==0)
+                                if(rec.getInt("online")==0)
                                 {
                                     String sql1 = "UPDATE member SET online = '1' WHERE UserID = "+rec.getString("UserID")+";";
                                     s.execute(sql1);
@@ -184,12 +191,11 @@
                 }
                 }
 </script>
-<hr>
         <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; <%out.print(configmysql.website);%></p>
+                    <p style="margin-left: 200px">Copyright &copy; <%out.print(configmysql.website);%></p>
                 </div>
             </div>
         </footer>

@@ -44,14 +44,13 @@
 		
 		s = connect.createStatement();
 		
-		String strCustomerID = request.getParameter("CusID");
+		String UserID = request.getParameter("UserID");
 		
 		
-		String sql = "DELETE FROM customer " +
-				" WHERE CustomerID = '" + strCustomerID + "' ";
+		String sql = "DELETE FROM member " +
+				" WHERE UserID = '" + UserID + "'";
          s.execute(sql);
-        
-         out.println("Record Delete Successfully");
+        response.sendRedirect("/BMPDev/admin/index.jsp");
 	  		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
