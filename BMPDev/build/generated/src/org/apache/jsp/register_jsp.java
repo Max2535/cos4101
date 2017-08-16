@@ -233,44 +233,7 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        ");
 
             if (request.getParameter("Action") != null) {
-                
-                
-                Connection connect = null;
-                Statement s = null;
-                response.setContentType("text/html"); 
-                String username = request.getParameter("username");
-                String password = request.getParameter("p1");
-                String email = request.getParameter("email");
-                String name = request.getParameter("name");
-                try {
-                    Class.forName(configmysql.mysqljdbc);
-                    connect = DriverManager.getConnection(configmysql.mysqlserver);                    
-                    s = connect.createStatement();
-                    //INSERT INTO `member` (`Username`, `Password`, `Email`, `Name`, `type`, `UserID`, `online`, `image`) VALUES ('test', 'test', 'test', 'test', 'user', NULL, '0', 'image/test.jpg');
-                    String sql="INSERT INTO `member` (`Username`, `Password`, `Email`, `Name`, `type`, `UserID`, `online`, `image`) VALUES"
-                            + " ('"+username+"', '"+password+"', '"+email+"', '"+name+"', 'user', NULL, '0', 'NULL');";
-                    //s.execute(sql);
-                    out.print(sql);
-                    //response.sendRedirect("/BMPDev/login.jsp");
-
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    out.println(e.getMessage());
-                    e.printStackTrace();
-                }
-
-                try {
-                    if (s != null) {
-                        s.close();
-                        connect.close();
-                    }
-                } catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    out.println(e.getMessage());
-                    e.printStackTrace();
-                }
-                
-                String savePath =null;
+                 String savePath =null;
                 //start upload
                 //to get the content type information from JSP Request Header
                 String contentType = request.getContentType();
@@ -291,6 +254,7 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
                         totalBytesRead += byteRead;
                     }
                     String file = new String(dataBytes);
+                    out.print(file);
                     //for saving the file name
                     String saveFile = file
                             .substring(file.indexOf("filename=\"") + 10);
@@ -320,6 +284,39 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
                     fileOut.close();
                 }
                 //end upload
+                Connection connect = null;
+                Statement s = null;
+                String username = request.getParameter("username");
+                String password = request.getParameter("p1");
+                String email = request.getParameter("email");
+                String name = request.getParameter("name");
+                try {
+                    Class.forName(configmysql.mysqljdbc);
+                    connect = DriverManager.getConnection(configmysql.mysqlserver);                    
+                    s = connect.createStatement();
+                    //INSERT INTO `member` (`Username`, `Password`, `Email`, `Name`, `type`, `UserID`, `online`, `image`) VALUES ('test', 'test', 'test', 'test', 'user', NULL, '0', 'image/test.jpg');
+                    String sql="INSERT INTO `member` (`Username`, `Password`, `Email`, `Name`, `type`, `UserID`, `online`, `image`) VALUES"
+                            + " ('"+username+"', '"+password+"', '"+email+"', '"+name+"', 'user', NULL, '0', '"+savePath+"');";
+                    //s.execute(sql);
+                    out.print(sql);
+                    //response.sendRedirect("/BMPDev/login.jsp");
+
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    out.println(e.getMessage());
+                    e.printStackTrace();
+                }
+
+                try {
+                    if (s != null) {
+                        s.close();
+                        connect.close();
+                    }
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    out.println(e.getMessage());
+                    e.printStackTrace();
+                }
     }
 
       out.write("\n");
