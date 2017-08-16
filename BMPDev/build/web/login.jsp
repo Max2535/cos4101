@@ -49,6 +49,7 @@
     <style>
         body{
             background-image:url("../BMPDev/image/bg.png");
+            width: 100%;
         }
         .form-signin {
             max-width: 500px;

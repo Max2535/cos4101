@@ -50,18 +50,19 @@
 		
 		s = connect.createStatement();
 		
-		String strCustomerID = request.getParameter("txtCustomerID");
-		String strName = request.getParameter("txtName");
-		String strEmail = request.getParameter("txtEmail");
-		String strCountryCode = request.getParameter("txtCountryCode");
-		float intBudget = Float.valueOf(request.getParameter("txtBudget"));
-		float intUsed = Float.valueOf(request.getParameter("txtUsed"));
-		
-		String sql = "INSERT INTO customer " +
-				"(CustomerID,Name,Email,CountryCode,Budget,Used) " + 
-				"VALUES ('" + strCustomerID + "','" + strName + "' " +
-				",'" + strEmail + "','" + strCountryCode + "'" +
-				",'" + intBudget + "','" + intUsed + "') ";
+		String Username = request.getParameter("Username");
+		String Password = request.getParameter("Password");
+		String Email = request.getParameter("Email");
+		String Name = request.getParameter("Name");
+		String type = request.getParameter("type");
+                
+		//INSERT INTO `member` (`Username`, `Password`, `Email`, `Name`, `type`, `UserID`, `online`) VALUES ('root', 'toor', 'suppchai_kalmro@hotmail.co.th', 'suppchai_kalmro', 'amdin', NULL, '0');
+		String sql = "INSERT INTO `member` (`Username`, `Password`, `Email`, `Name`, `type`) VALUES ("
+                        + "'"+Username+"', "
+                        + "'"+Password+"', "
+                        + "'"+Email+"', "
+                        + "'"+Name+"',"
+                        + " '"+type+"');";
                 s.execute(sql);
                 response.sendRedirect("/BMPDev/admin/index.jsp");
                 } catch (Exception e) {

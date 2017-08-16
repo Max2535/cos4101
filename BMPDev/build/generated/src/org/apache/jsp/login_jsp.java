@@ -97,6 +97,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <style>\n");
       out.write("        body{\n");
       out.write("            background-image:url(\"../BMPDev/image/bg.png\");\n");
+      out.write("            width: 100%;\n");
       out.write("        }\n");
       out.write("        .form-signin {\n");
       out.write("            max-width: 500px;\n");

@@ -198,9 +198,9 @@
                                             <td align="center"><%=rec.getString("ExpiredDate")%></td>
                                             <td align="center"><a type="button" href="view.jsp?CusID=<%=rec.getString("HireID")%>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-info-sign"></i></a></td>
                                             <td align="center"><a type="button" href="edit.jsp?CusID=<%=rec.getString("HireID")%>" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-edit"></i></a>                                                
-                                            <td align="center"><a type="button" onclick="del()" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-trash"></i></a>
+                                            <td align="center"><a type="button" onclick="del<%=rec.getString("HireID")%>()" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-trash"></i></a>
                                                 <script>
-                                                function del() 
+                                                function del<%=rec.getString("HireID")%>() 
                                                 {
                                                         if (confirm("คุณต้องการลบ <%=rec.getString("HireID")%> ?") == true) 
                                                         {
@@ -250,9 +250,9 @@
                                             <td align="center"><%=rec.getString("ExpiredDate")%></td>
                                             <td align="center"><a type="button" href="/BMPDev/admin/booking/view.jsp?BookingID=<%=rec.getString("BookingID")%>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-info-sign"></i></a></td>
                                             <td align="center"><a type="button" href="/BMPDev/admin/booking/edit.jsp?BookingID=<%=rec.getString("BookingID")%>" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-edit"></i></a>                                                
-                                            <td align="center"><a type="button" onclick="del2()" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-trash"></i></a>
+                                            <td align="center"><a type="button" onclick="del2<%=rec.getString("BookingID")%>()" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-trash"></i></a>
                                                 <script>
-                                                function del2() 
+                                                function del2<%=rec.getString("BookingID")%>() 
                                                 {
                                                         if (confirm("คุณต้องการลบ <%=rec.getString("BookingID")%> ?") == true) 
                                                         {
@@ -302,9 +302,9 @@
                                             <td align="center"><%=rec.getString("ExpiredDate")%></td>
                                             <td align="center"><a type="button" href="/BMPDev/admin/stand/view.jsp?StandID=<%=rec.getString("StandID")%>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-info-sign"></i></a></td>
                                             <td align="center"><a type="button" href="/BMPDev/admin/stand/edit.jsp?StandID=<%=rec.getString("StandID")%>" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-edit"></i></a>                                                
-                                            <td align="center"><a type="button" onclick="del3()" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-trash"></i></a>
+                                            <td align="center"><a type="button" onclick="del3<%=rec.getString("StandID")%>()" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-trash"></i></a>
                                                 <script>
-                                                function del3() 
+                                                function del3<%=rec.getString("StandID")%>() 
                                                 {
                                                         if (confirm("จัดการคืนรถ คุณต้องการลบ <%=rec.getString("StandID")%> ?") === true)
                                                         {
@@ -359,14 +359,23 @@
                                                 <%}else{%>
                                                 <button type="button" class="btn btn-danger">offline</button>
                                                 <%}%></td>
-                                            <td><div align="center"><%=rec.getString("Email")%></div></td>
+                                            <td><div align="center"><%=rec.getString("Email")%>&nbsp;<button type="button" onclick="send<%=rec.getString("UserID")%>()" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-inbox"></i></button></div></td>
+                                            <script>
+                                                function send<%=rec.getString("UserID")%>() 
+                                                {
+                                                        if (confirm("คุณต้องการส่งไปหา <%=rec.getString("Username")%> ?")=== true) 
+                                                        {
+                                                        javascript:location.href="send.jsp?Email=<%=rec.getString("Email")%>"
+                                                        } 
+                                                }
+                                                </script>
                                             <td align="center"><a type="button" href="view.jsp?UserID=<%=rec.getString("UserID")%>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-info-sign"></i></a></td>
                                             <td align="center"><a type="button" href="edit.jsp?UserID=<%=rec.getString("UserID")%>" class="btn btn-info btn-circle"><i class="glyphicon glyphicon-edit"></i></a>                                                
-                                            <td align="center"><a type="button" onclick="del()" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-trash"></i></a>
+                                            <td align="center"><a type="button" onclick="del<%=rec.getString("UserID")%>()" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-trash"></i></a>
                                                 <script>
-                                                function del() 
+                                                function del<%=rec.getString("UserID")%>() 
                                                 {
-                                                        if (confirm("คุณต้องการลบ <%=rec.getString("UserID")%> ?")=== true) 
+                                                        if (confirm("คุณต้องการลบ <%=rec.getString("Username")%> ?")=== true) 
                                                         {
                                                         javascript:location.href="del.jsp?UserID=<%=rec.getString("UserID")%>"
                                                         } 
@@ -430,12 +439,13 @@
    <form class="modal-content animate" name="frmAdd" method="post" action="add.jsp"  onSubmit="JavaScript:return fncSubmit();">	
         <center>
         <div class="form-group">
-            <input class="form-control" type="text"  name="txtUserID" placeholder="UserID" id="t1" style="width: 90%">
-            <input class="form-control" type="text" name="txtName" placeholder="Name" style="width: 90%">
-            <input class="form-control" type="email" name="txtEmail" placeholder=" E-mail" style="width: 90%">
-            <input class="form-control" type="text" name="txtCountryCode" placeholder="CountryCode" style="width: 90%">
-            <input class="form-control" type="text" name="txtBudget" placeholder="Budget" style="width: 90%">
-            <input class="form-control" type="text" name="txtUsed" placeholder="Used" style="width: 90%">
+            <br>
+            <!--INSERT INTO `member` (`Username`, `Password`, `Email`, `Name`, `type`, `UserID`, `online`) VALUES ('root', 'toor', 'suppchai_kalmro@hotmail.co.th', 'suppchai_kalmro', 'amdin', NULL, '0');-->
+            <input class="form-control" type="text"  name="Username" placeholder="Username" id="t1" style="width: 90%">
+            <input class="form-control" type="password" name="Password" placeholder="Password" style="width: 90%">
+            <input class="form-control" type="email" name="Email" placeholder="E-mail" style="width: 90%">
+            <input class="form-control" type="text" name="Name" placeholder="Name" style="width: 90%">
+            <input class="form-control" type="text" name="type" placeholder="type" style="width: 90%">
             <table border="0">
                  <tbody>
                     <tr>
@@ -451,3 +461,14 @@
 </div>
 </body>
 </html>
+<%
+    Object Send = session.getAttribute("Send");
+    if(Send!=null||!Send.equals(""))
+    {
+        %>
+        <script>
+            alert("<%=Send%>")
+            </script>
+        <%
+    }
+    session.setAttribute("Send","");%>
